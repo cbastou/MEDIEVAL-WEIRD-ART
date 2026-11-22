@@ -1,0 +1,32 @@
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--flip-duration:.6s}
+body{background:#888;color:#000;font-family:"Fragment Mono",monospace}
+.hero{background:#000;height:310px;display:flex;align-items:flex-end;justify-content:center;padding:0 16px 24px}
+.hero h1{font-family:"Kameron",serif;font-weight:400;color:#fff;text-align:center;font-size:clamp(40px,7.5vw,96px);line-height:1.1}
+.intro{max-width:1178px;margin:0 auto;padding:96px 16px 0;text-align:center}
+.intro p{font-size:clamp(16px,1.9vw,24px);line-height:1.4}
+.intro em{font-style:italic}
+
+.grid{display:grid;grid-template-columns:repeat(3,345px);justify-content:center;column-gap:26px;row-gap:92px;padding:97px 16px 200px}
+.slot{grid-column:var(--c);grid-row:calc(var(--r) + 1)}
+.slot--mid{transform:translateY(calc(192px + var(--r) * 15.5px))}
+
+/* Carte : bouton + rotation 3D */
+.card{display:block;width:345px;height:425px;border:0;background:none;padding:0;font:inherit;color:inherit;cursor:pointer;perspective:1200px;-webkit-tap-highlight-color:transparent}
+.card:focus-visible{outline:3px solid #fff;outline-offset:4px;border-radius:20px}
+.card-inner{position:relative;display:block;width:100%;height:100%;transform-style:preserve-3d;transition:transform var(--flip-duration) cubic-bezier(.4,.2,.2,1)}
+.face{position:absolute;inset:0;display:block;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.face-b{transform:rotateY(180deg)}
+.plate{position:absolute;inset:25px 49px 34px;background:var(--plate,#fff);border-radius:15px}
+.thumb{position:absolute;left:65px;top:41px;width:214px;height:208px;overflow:hidden}
+.thumb img.fill{width:100%;height:100%;object-fit:cover;display:block}
+.crop{position:absolute;inset:0;overflow:hidden}
+.crop img{position:absolute;max-width:none}
+.caption{position:absolute;left:50%;top:320.5px;transform:translate(-50%,-50%);width:212px;max-height:109px;display:flex;align-items:center;justify-content:center;text-align:center;font-family:"Chela One",serif;font-size:13px;line-height:normal;color:#120e0b}
+
+@media (max-width:1150px){
+  .grid{grid-template-columns:345px;row-gap:24px;padding:48px 0}
+  .slot{grid-column:1;grid-row:auto;justify-self:center}
+  .slot--mid{transform:none}
+}
+@media (prefers-reduced-motion:reduce){:root{--flip-duration:0s}}
